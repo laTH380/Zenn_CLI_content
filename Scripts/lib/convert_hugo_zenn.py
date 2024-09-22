@@ -1,8 +1,8 @@
 def convert_header(header_dict):
     new_header_dict = {
         'title': header_dict['title'],
-        'emoji': "👀",
-        'type': "tech", # tech: 技術記事 / idea: アイデア
+        'emoji': '👀',
+        'type': 'tech', # tech: 技術記事 / idea: アイデア
         'topics': header_dict['tags'],
         'published': 'true',
         'published_at': header_dict['date']
@@ -17,16 +17,16 @@ def arrange_body(body, samune):
 
 def convert_body(body, image_conv_dir):
     conv_dict = {
-        "{{< highlight html >}}" : "```html",
-        "{{< highlight css >}}" : "```css",
-        "{{< highlight js >}}" : "```js",
-        "{{< highlight bash >}}" : "```bash",
-        "{{< highlight python >}}" : "```python",
-        "{{< /highlight >}}" : "```",
+        '{{< highlight bash >}}' : '```html',
+        '{{< highlight css >}}' : '```css',
+        '{{< highlight js >}}' : '```js',
+        '{{< highlight bash >}}' : '```bash',
+        '{{< highlight python >}}' : '```python',
+        '{{< /highlight >}}' : '```',
     }
     conv_dict = conv_dict | image_conv_dir
     print(conv_dict)
-    new_body = ""
+    new_body = ''
     for key, value in conv_dict.items():
         new_body = body.replace(key, value)
     return new_body
