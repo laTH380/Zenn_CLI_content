@@ -5,7 +5,7 @@ def convert_header(header_dict):
         'type': "tech", # tech: 技術記事 / idea: アイデア
         'topics': header_dict['tags'],
         'published': 'true',
-        'published_at': header_dict['date'] + " 00:00"
+        'published_at': header_dict['date']
     }
     return new_header_dict
 
