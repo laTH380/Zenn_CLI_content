@@ -17,7 +17,7 @@ def arrange_body(body, samune):
 
 def convert_body(body, image_conv_dir):
     conv_dict = {
-        '{{< highlight bash >}}' : '```html',
+        '{{< highlight html >}}' : '```html',
         '{{< highlight css >}}' : '```css',
         '{{< highlight js >}}' : '```js',
         '{{< highlight bash >}}' : '```bash',
