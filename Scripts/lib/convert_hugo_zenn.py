@@ -35,6 +35,6 @@ def convert_hugo_to_zenn(header_dict, body, image_conv_dir):
     new_body = arrange_body(body, samune)
 
     # 本文を変換
-    new_body = convert_body(body, image_conv_dir)
+    new_body = convert_body(new_body, image_conv_dir)
 
     return new_header_dict, new_body
