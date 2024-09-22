@@ -6,7 +6,7 @@ topics: ['Hugo', 'Zenn']
 published: true
 published_at: 2024-09-26
 ---
-![thumbnail](/images/articles/1f0d6bbabdfed3/hugoZenn.png)
+![thumbnail](/images/articles/db17ce0a4ef91f/hugoZenn.png)
 
 ## はじめに
 せっかくだから自分の作ったホームページを運用したい！でも最近流行りのZennにも投稿したい...！そんなこと、ありますよね。
