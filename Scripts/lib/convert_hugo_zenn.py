@@ -25,11 +25,9 @@ def convert_body(body, image_conv_dir):
         '{{< /highlight >}}' : '```',
     }
     conv_dict = conv_dict | image_conv_dir
-    print(conv_dict)
-    new_body = ''
     for key, value in conv_dict.items():
-        new_body = body.replace(key, value)
-    return new_body
+        body = body.replace(key, value)
+    return body
 
 
 
