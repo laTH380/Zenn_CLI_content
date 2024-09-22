@@ -11,7 +11,7 @@ def convert_header(header_dict):
     return new_header_dict, samune
 
 def arrange_body(body, samune):
-    new_body = f'![thumbnail]({samune})\\n\\n{body}'
+    new_body = f'![thumbnail]({samune}){body}'
     return new_body
 
 
