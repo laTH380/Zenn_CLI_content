@@ -17,14 +17,15 @@ def arrange_body(body, samune):
 
 def convert_body(body, image_conv_dir):
     conv_dict = {
-        "/{/{< highlight html >}}" : "```html",
-        "/{/{< highlight css >}}" : "```css",
-        "/{/{< highlight js >}}" : "```js",
-        "/{/{< highlight bash >}}" : "```bash",
-        "/{/{< highlight python >}}" : "```python",
-        "/{/{< /highlight >}}" : "```",
+        "{{< highlight html >}}" : "```html",
+        "{{< highlight css >}}" : "```css",
+        "{{< highlight js >}}" : "```js",
+        "{{< highlight bash >}}" : "```bash",
+        "{{< highlight python >}}" : "```python",
+        "{{< /highlight >}}" : "```",
     }
     conv_dict = conv_dict | image_conv_dir
+    print(conv_dict)
     new_body = ""
     for key, value in conv_dict.items():
         new_body = body.replace(key, value)
