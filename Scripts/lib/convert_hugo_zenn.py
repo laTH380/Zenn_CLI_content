@@ -7,7 +7,13 @@ def convert_header(header_dict):
         'published': 'true',
         'published_at': header_dict['date']
     }
-    return new_header_dict
+    samune = header_dict['featureImage']
+    return new_header_dict, samune
+
+def arrange_body(body, samune):
+    new_body = f'![thumbnail]({samune})\\n\\n{body}'
+    return new_body
+
 
 def convert_body(body, image_conv_dir):
     conv_dict = {
@@ -19,11 +25,16 @@ def convert_body(body, image_conv_dir):
         new_body = body.replace(key, value)
     return new_body
 
+
+
 def convert_hugo_to_zenn(header_dict, body, image_conv_dir):
     # ヘッダを変換
-    new_header_dict = convert_header(header_dict)
+    new_header_dict, samune = convert_header(header_dict)
+
+    # 本文をに追加情報を追加
+    new_body = arrange_body(body, samune)
 
     # 本文を変換
     new_body = convert_body(body, image_conv_dir)
-       
+
     return new_header_dict, new_body
