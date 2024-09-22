@@ -1,0 +1,17 @@
+---
+title: UE5.4にCompatible Skeletonsの設定項目がないんだが！？
+emoji: 👀
+type: tech
+topics: ['UE5']
+published: true
+published_at: 2024-4-12 00:00
+---
+
+
+## 結論
+エディタ設定の中にありました。
+![検索すると出てくる](/images/articles/b1fcfbdd978f01/image1.png)
+
+UE5.2からエディタ設定で有効化すれば、すべてのアニメーションに対してCompatible Skeletonsが有効化できるようになったようです。
+
+以前のようにスケルタルメッシュごとに設定しなくてよくなったんですね～！便利！！
