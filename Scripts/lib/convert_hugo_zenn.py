@@ -19,6 +19,7 @@ def convert_body(body, image_conv_dir):
     conv_dict = {
         '{{< highlight html >}}' : '```html',
         '{{< highlight css >}}' : '```css',
+        '{{< highlight cpp >}}' : '```cpp',
         '{{< highlight js >}}' : '```js',
         '{{< highlight bash >}}' : '```bash',
         '{{< highlight python >}}' : '```python',
