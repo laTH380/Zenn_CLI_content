@@ -15,7 +15,10 @@ header_dict, body, image_files_name = get_info_from_hugo_article.get_info(sorce_
 
 # ZennCLIのディレクトリにデフォルト記事作成
 os.chdir(f'{zenn_dir_path}')
-command = [os.path.join("C:/Program Files/nodejs/npx.cmd"), "zenn", "new:article"]
+npx_path = shutil.which("npx")
+if npx_path is None:
+    raise FileNotFoundError("npxが見つかりません。Node.jsまたはVoltaのPATH設定を確認してください。")
+command = [npx_path, "zenn", "new:article"]
 result = subprocess.run(command, check=True, text=True, capture_output=True)
 created_article_path = result.stdout.split(' ')[1]
 created_article_name = os.path.splitext(os.path.basename(created_article_path))[0]
