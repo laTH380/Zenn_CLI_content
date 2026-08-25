@@ -2,12 +2,24 @@ import sys
 import os
 import shutil
 import subprocess
+import re
 
 from lib import get_info_from_hugo_article, convert_hugo_zenn
 
 
 sorce_post_bundle_dir_path = sys.argv[1] #Hugoの記事のpost_bundleのディレクトリパス
 zenn_dir_path="C:/Users/thiro/Documents/CreationProgram/my_homepage/Zenn_CLI_content" #ZennCLIのディレクトリパス
+
+
+def run_command(command):
+    return subprocess.run(
+        command,
+        check=True,
+        text=True,
+        capture_output=True,
+        encoding="utf-8",
+        errors="replace",
+    )
 
 
 # Hugoの記事から必要な情報を取得
@@ -19,8 +31,11 @@ npx_path = shutil.which("npx")
 if npx_path is None:
     raise FileNotFoundError("npxが見つかりません。Node.jsまたはVoltaのPATH設定を確認してください。")
 command = [npx_path, "zenn", "new:article"]
-result = subprocess.run(command, check=True, text=True, capture_output=True)
-created_article_path = result.stdout.split(' ')[1]
+result = run_command(command)
+article_path_match = re.search(r"articles[/\\][^\s]+\.md", result.stdout)
+if article_path_match is None:
+    raise RuntimeError(f"作成された記事パスをZenn CLIの出力から取得できませんでした: {result.stdout}")
+created_article_path = article_path_match.group(0)
 created_article_name = os.path.splitext(os.path.basename(created_article_path))[0]
 
 #画像ディレクトリを作成し、画像をコピー
@@ -45,6 +60,6 @@ with open(f'./articles/{created_article_name}.md', 'w', encoding='utf-8') as fil
     file.write(new_body)
 
 # 記事を投稿
-subprocess.run(["git", "add", "."], check=True, text=True, capture_output=True)
-subprocess.run(["git", "commit", "-m", "記事投稿"], check=True, text=True, capture_output=True)
-subprocess.run(["git", "push"], check=True, text=True, capture_output=True)
+run_command(["git", "add", "."])
+run_command(["git", "commit", "-m", "記事投稿"])
+run_command(["git", "push"])
